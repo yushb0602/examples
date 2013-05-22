@@ -1,0 +1,1 @@
+cmd_/home/v/examples/LinuxKernel/chardev/chardev.ko.unsigned := ld -r -m elf_x86_64 -T /usr/src/kernels/2.6.32-358.2.1.el6.x86_64/scripts/module-common.lds --build-id -o /home/v/examples/LinuxKernel/chardev/chardev.ko.unsigned /home/v/examples/LinuxKernel/chardev/chardev.o /home/v/examples/LinuxKernel/chardev/chardev.mod.o 
