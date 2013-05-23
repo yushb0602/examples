@@ -6,7 +6,7 @@
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/stat.h>
-
+#include <linux/timer.h>
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Peter Jay Salzman");
 
@@ -44,15 +44,29 @@ MODULE_PARM_DESC(mystring, "A character string");
  *        */
 module_param_array(myintArray, int, &arr_argc, 0000);
 MODULE_PARM_DESC(myintArray, "An array of integers");
+/* timer test */
+static struct timer_list my_timer;
+void my_timer_callback(unsigned long data)
+{
+        printk(KERN_INFO "my_time_callback(%ld).\n", jiffies);
+	mod_timer(&my_timer,jiffies+msecs_to_jiffies(10*1000));
+
+}
 
 static int __init hello_5_init(void)
-{	
-	int i;	
-	/* test kernel memory management */
-	struct list_head* h = 0;
-	h = (struct list_head*) kmalloc(sizeof(struct list_head),GFP_KERNEL);
-	if (h) printk(KERN_INFO "kmalloc ok\n");
-	else printk(KERN_INFO "kmailo failed\n");
+{
+        int i;
+        /* test kernel memory management */
+        struct list_head* h = 0;
+        h = (struct list_head*) kmalloc(sizeof(struct list_head),GFP_KERNEL);
+        if (h) printk(KERN_INFO "kmalloc ok\n");
+        else printk(KERN_INFO "kmailo failed\n");
+
+        /* set timer*/
+        setup_timer(&my_timer, my_timer_callback, 0);
+        printk(KERN_INFO "start timer to fire in 200ms (%ld)\n", jiffies);
+        mod_timer(&my_timer,jiffies+msecs_to_jiffies(200));
+
 
 	printk(KERN_INFO "aa Hello, world 5\n=============\n");
 	printk(KERN_INFO "myshort is a short integer: %hd\n", myshort);
