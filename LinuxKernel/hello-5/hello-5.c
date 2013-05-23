@@ -46,9 +46,15 @@ module_param_array(myintArray, int, &arr_argc, 0000);
 MODULE_PARM_DESC(myintArray, "An array of integers");
 
 static int __init hello_5_init(void)
-{
-	int i;
-	printk(KERN_INFO "Hello, world 5\n=============\n");
+{	
+	int i;	
+	/* test kernel memory management */
+	struct list_head* h = 0;
+	h = (struct list_head*) kmalloc(sizeof(struct list_head),GFP_KERNEL);
+	if (h) printk(KERN_INFO "kmalloc ok\n");
+	else printk(KERN_INFO "kmailo failed\n");
+
+	printk(KERN_INFO "aa Hello, world 5\n=============\n");
 	printk(KERN_INFO "myshort is a short integer: %hd\n", myshort);
 	printk(KERN_INFO "myint is an integer: %d\n", myint);
 	printk(KERN_INFO "mylong is a long integer: %ld\n", mylong);
