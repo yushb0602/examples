@@ -1,1 +1,1 @@
-cmd_/home/v/examples/LinuxKernel/hello-5/hello-5.ko := cp /home/v/examples/LinuxKernel/hello-5/hello-5.ko.unsigned /home/v/examples/LinuxKernel/hello-5/hello-5.ko
+cmd_/home/v/linux-2.6.32.50/examples/LinuxKernel/hello-5/hello-5.ko := cp /home/v/linux-2.6.32.50/examples/LinuxKernel/hello-5/hello-5.ko.unsigned /home/v/linux-2.6.32.50/examples/LinuxKernel/hello-5/hello-5.ko
