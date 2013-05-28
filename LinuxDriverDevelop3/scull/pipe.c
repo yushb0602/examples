@@ -27,7 +27,7 @@
 #include <linux/poll.h>
 #include <linux/cdev.h>
 #include <asm/uaccess.h>
-
+#include <linux/sched.h>
 #include "scull.h"		/* local definitions */
 
 struct scull_pipe {
@@ -127,7 +127,7 @@ static ssize_t scull_p_read (struct file *filp, char __user *buf, size_t count,
 		up(&dev->sem); /* release the lock */
 		if (filp->f_flags & O_NONBLOCK)
 			return -EAGAIN;
-		PDEBUG("\"%s\" reading: going to sleep\n", current->comm);
+		printk("\"%s\" reading: going to sleep\n", current->comm);
 		if (wait_event_interruptible(dev->inq, (dev->rp != dev->wp)))
 			return -ERESTARTSYS; /* signal: tell the fs layer to handle it */
 		/* otherwise loop, but first reacquire the lock */
