@@ -15,7 +15,7 @@
  *
  * $Id: shortprint.c,v 1.4 2004/09/26 08:01:04 gregkh Exp $
  */
-#include <linux/config.h>
+#include <linux/sched.h>
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 

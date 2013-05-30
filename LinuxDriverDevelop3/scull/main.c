@@ -16,7 +16,7 @@
 
 #include <linux/version.h>
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2, 6, 19)
-#include <linux/config.h>
+#include <linux/sched.h>
 #else
 #include <linux/autoconf.h>
 #endif
