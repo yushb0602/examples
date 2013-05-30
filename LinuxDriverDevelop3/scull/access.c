@@ -65,6 +65,7 @@ static atomic_t scull_s_available = ATOMIC_INIT(1);
 
 static int scull_s_open(struct inode *inode, struct file *filp)
 {
+	HZ;
 	struct scull_dev *dev = &scull_s_device; /* device information */
 
 	if (! atomic_dec_and_test (&scull_s_available)) {

@@ -15,7 +15,6 @@
  * $Id: jiq.c,v 1.7 2004/09/26 07:02:43 gregkh Exp $
  */
  
-#include <linux/config.h>
 #include <linux/module.h>
 #include <linux/moduleparam.h>
 #include <linux/init.h>
@@ -28,7 +27,7 @@
 #include <linux/workqueue.h>
 #include <linux/preempt.h>
 #include <linux/interrupt.h> /* tasklets */
-
+#include <linux/workqueue.h>
 MODULE_LICENSE("Dual BSD/GPL");
 
 /*
@@ -241,7 +240,7 @@ static int jiq_init(void)
 {
 
 	/* this line is in jiq_init() */
-	INIT_WORK(&jiq_work, jiq_print_wq, &jiq_data);
+	INIT_WORK(&jiq_work, jiq_print_wq);
 
 	create_proc_read_entry("jiqwq", 0, NULL, jiq_read_wq, NULL);
 	create_proc_read_entry("jiqwqdelay", 0, NULL, jiq_read_wq_delayed, NULL);

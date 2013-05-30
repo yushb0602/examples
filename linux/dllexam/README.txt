@@ -1,5 +1,6 @@
 What you need is nm and its -D option:
 
+nm -g  *.so
 $ nm -D /usr/lib/libopenal.so.1
 .
 .
