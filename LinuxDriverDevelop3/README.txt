@@ -1,0 +1,1 @@
+KBUILD_NOPEDANTIC=1 make
